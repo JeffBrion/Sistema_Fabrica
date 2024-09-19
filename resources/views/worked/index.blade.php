@@ -1,34 +1,41 @@
-@extends('Layout.Layout');
+@extends('Layout.layout');
 @section('body')
-<h3> Agregar Usuario</h3>
+<h3> Agregar Trabajador</h3>
 <hr class="separador">
 <div class="container card  p-4">
-    <form action="{{ route('register') }}" method="Post" name="user_form" >
+    <form action="" method="Post" name="user_form" >
         @csrf
         <div class="row">
                 <div class="col-md-6 mt-3">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label" >Nombre de Usuario</label>
+                        <label for="exampleFormControlInput1" class="form-label" >Primer Nombre</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleFormControlInput1" name="password" required>
+                        <label for="exampleFormControlInput1" class="form-label">Primer Apellido</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="last_name" required>
                     </div>      
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Correo Electronico</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" name="email" required>
+                    </div> 
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" name="email"  required>
+                        <label for="exampleFormControlInput1" class="form-label">Segundo Nombre</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="middle_name" >
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Rol del Usuario</label>
-                        <select  class="form-control" id="exampleFormControlInput1" name="role"  required>
-                            <option disabled selected>Seleccione Rol</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Recursos Humanos" >Recursos Humanos</option>
-                            <option value="Supervisor">Supervisor</option>
-                            <option value="Usuario">Usuario</option>
+                        <label for="exampleFormControlInput1" class="form-label">Segundo Apellido</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="middle_last_name" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Seleccione el Área</label>
+                        <select  class="form-control" id="exampleFormControlInput1" name="area"  required>
+                            <option disabled selected>Seleleccione</i>
+                            @foreach ($areas as $area)
+                             <option value="{{ $area->id }}">{{ $area->name }}</option>
+                            @endforeach
                           </select>
                     </div>  
                 </div>
@@ -38,12 +45,12 @@
         </div>
     </form>
 </div> 
-<h3 class="mt-3"> Usuarios Agregados</h3>
+{{-- <h3 class="mt-3"> Usuarios Agregados</h3>
 <hr class="separador">
 <div class="container card p-4">
     <table class="table">
         <thead>
-          <tr class="table-secondary">
+          <tr>
             <th scope="col">Id</th>
             <th scope="col">Usuario</th>
             <th scope="col">Correo</th>
@@ -53,7 +60,7 @@
         </thead>
         <tbody>
             @foreach ($users as $user )
-            <tr class="table-primary">
+            <tr>
                 <th>{{ $user->id }}</th>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
@@ -88,15 +95,9 @@
                                 <input type="text" class="form-control" id="exampleFormControlInput1"  name="email" required value="{{ $user->email }}">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Rol del Usuario</label>
-                                <select  class="form-control" id="exampleFormControlInput1" name="role"  required>
-                                    <option disabled selected>Seleccione Rol</option>
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Recursos Humanos" >Recursos Humanos</option>
-                                    <option value="Supervisor">Supervisor</option>
-                                    <option value="Usuario">Usuario</option>
-                                  </select>
-                            </div>  
+                                <label for="exampleFormControlInput1" class="form-label" >Rol</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="role" required value="{{ $user->role }}">
+                            </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label" >Contraseña</label>
                                 <input type="text" class="form-control" id="exampleFormControlInput1"  name="password" required value="{{ $user->password }}">
@@ -121,5 +122,6 @@
             <li class="page-item"><a class="page-link" href="{{ $users->nextPageUrl() }}">Siguiente</a></li>
         </ul>
       </nav>
-</div>
+</div> --}}
+    
 @endsection

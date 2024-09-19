@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ url('home') }}">
                 <img src='{{ Asset('img/Puro_Logo.png') }}'width="50">
             </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -35,10 +35,10 @@
                   <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('user') }}"><i class="fa-solid fa-users me-4 color-nav-item"></i> Usuarios</a>
                 </li>
                 <li class="nav-item mt-3">
-                    <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('worked') }}"><i class="fa-solid fa-person-running me-4 color-nav-item"></i> Trabajador</a>
+                  <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('area') }}"><i class="fa-solid fa-layer-group me-4 color-nav-item"></i> Areas</a>
                 </li>
                 <li class="nav-item mt-3">
-                    <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('area') }}"><i class="fa-solid fa-layer-group me-4 color-nav-item"></i> Areas</a>
+                    <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('worked') }}"><i class="fa-solid fa-person-running me-4 color-nav-item"></i> Trabajador</a>
                 </li>
                 <li class="nav-item mt-3">
                     <a class="nav-link active color-nav-item" aria-current="page" href="#"><i class="fa-solid fa-joint me-4 color-nav-item"></i> Producto</a>

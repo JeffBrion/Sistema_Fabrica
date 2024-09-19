@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //Index
-Route::get('/Home', [index_controller::class, 'home'])->name('home');
+Route::get('/home', [index_controller::class, 'home'])->name('home');
 Route::get('/user', [index_controller::class, 'user'])->name('user');
 Route::get('/worked',[index_controller::class, 'worked'])-> name('worked');
 Route::get('/area',[index_controller::class, 'area'])->name('area');

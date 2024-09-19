@@ -25,7 +25,9 @@ Route::post('create_worker', [create_controller::class, 'create_worker'])->name(
 //Eliminar
 Route::delete('user/{id}', [delete_controller::class, 'usuario_eliminar'])->name('usuario_eliminar');
 Route::delete('area/{id}', [delete_controller::class, 'area_eliminar'])->name('area_eliminar');
+Route::delete('worker/"{id}', [delete_controller::class, 'worker_delete'])->name('worker_delete');
 
 //Editar
 Route::put('user/{id}', [edit_controller::class, 'editar_usuario'])->name('editar_usuario');
 Route::put('area/{id}', [edit_controller::class, 'editar_area'])->name('editar_area');
+Route::put('worker/{id}',[edit_controller::class, 'edit_worker'])-> name('edit_worker');

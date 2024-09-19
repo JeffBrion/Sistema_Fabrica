@@ -59,12 +59,12 @@
         </div>
     </form>
 </div> 
-<h3 class="mt-3"> Usuarios Agregados</h3>
+<h3 class="mt-3"> Trabajadores Agregados</h3>
 <hr class="separador">
 <div class="container card p-4">
     <table class="table">
         <thead>
-          <tr>
+          <tr class="table-secondary">
             <th scope="col">Id</th>
             <th scope="col">Primer Nombre</th>
             <th scope="col">Segundo Nombre</th>
@@ -72,19 +72,24 @@
             <th scope="col">Segundo Apellido</th>
             <th scope="col">Correo</th>
             <th scope="col">Número de Telefono</th>
+            <th scope="col">Área</th>
             <th colspan="2">Opciones</th>
           </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user )
-            <tr>
-                <th>{{ $user->id }}</th>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->role }}</td>
+            @foreach ($workers as $worker )
+            <tr class="table-primary">
+                <th>{{ $worker->id }}</th>
+                <td>{{ $worker->name }}</td>
+                <td>{{ $worker->middle_name }}</td>
+                <td>{{ $worker->last_name }}</td>
+                <td>{{ $worker->middle_last_name }}</td>
+                <td>{{ $worker->email }}</td>
+                <td>{{ $worker->numbre_phone }}</td>
+                <td>{{ $worker->area->name }}</td>
                 <td> 
                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
-                    <form action="" method="POST" style="display: inline">
+                    <form action="{{ route('worker_delete', $worker->id) }}" method="POST" style="display: inline">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
@@ -100,26 +105,42 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="" method="POST">
+                        <form action="{{ route('edit_worker', $worker->id) }}" method="POST">
                             @method('PUT')
                             @csrf
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label" >Nombre de Usuario</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" required value="">
+                                <label for="exampleFormControlInput1" class="form-label" >Primer Nombre</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" required value="{{$worker->name}}">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label" >Correo Electrónico</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="email" required value="">
+                                <label for="exampleFormControlInput1" class="form-label" >Segundo Nombre</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="middle_name" required value="{{$worker->middle_name}}">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label" >Rol</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="role" required value="">
+                                <label for="exampleFormControlInput1" class="form-label" >Primer Apellido</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="last_name" required value="{{ $worker->last_name }}">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label" >Contraseña</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="password" required value="">
+                                <label for="exampleFormControlInput1" class="form-label" >Segundo Apellido</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="middle_last_name" required value="{{ $worker->middle_last_name }}">
                             </div>
-                        
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label" >Correo Electronico</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1"  name="email" required value="{{ $worker->email }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label" >Célular</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="numbre_phone" required value="{{ $worker->numbre_phone }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Seleccione el Área</label>
+                                <select  class="form-control" id="exampleFormControlInput1" name="area"  required>
+                                    <option  value="{{ $worker->area->id }}" selected>{{ $worker->area->name }}</i>
+                                    @foreach ($areas as $area)
+                                     <option value="{{ $area->id }}">{{ $area->name }}</option>
+                                    @endforeach
+                                  </select>
+                            </div>  
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -135,8 +156,8 @@
       </table>
       <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="{{ $users->previousPageUrl()}}" >Anterior</a></li>
-            <li class="page-item"><a class="page-link" href="{{ $users->nextPageUrl() }}">Siguiente</a></li>
+            <li class="page-item"> <a class="page-link" href="" >Anterior</a></li>
+            <li class="page-item"><a class="page-link" href="">Siguiente</a></li>
         </ul>
       </nav>
 </div>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\areas;
 
 class worker extends Model
 {
@@ -17,4 +18,8 @@ class worker extends Model
         'numbre_phone',
         'areas_id',
     ];
+    public function area()
+    {
+        return $this->belongsTo(areas::class, 'areas_id');
+    }
 }

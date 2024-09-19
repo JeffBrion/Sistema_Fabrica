@@ -15,5 +15,6 @@ class worker extends Model
         'middle_last_name',
         'email',
         'numbre_phone',
+        'areas_id',
     ];
 }

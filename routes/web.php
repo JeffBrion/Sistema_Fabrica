@@ -4,6 +4,7 @@ use App\Http\Controllers\create_controller;
 use App\Http\Controllers\delete_controller;
 use App\Http\Controllers\edit_controller;
 use App\Http\Controllers\index_controller;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,6 +20,7 @@ Route::get('/area',[index_controller::class, 'area'])->name('area');
 //Create
 Route::post('register', [create_controller::class, 'register'])->name('register');
 Route::post('create_area', [create_controller::class, 'create_area'])->name('create_area');
+Route::post('create_worker', [create_controller::class, 'create_worker'])->name('create_worker');
 
 //Eliminar
 Route::delete('user/{id}', [delete_controller::class, 'usuario_eliminar'])->name('usuario_eliminar');

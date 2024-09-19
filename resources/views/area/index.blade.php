@@ -3,6 +3,16 @@
 <h3> Agregar Área</h3>
 <hr class="separador">
 <div class="container card  p-4">
+    @if (session('error'))
+    <div class="alert alert-warning" role="alert">
+       {{ session('error') }}
+    </div>
+    @endif
+    @if (session('success'))
+    <div class="alert alert-success" role="alert">
+       {{ session('success') }}
+    </div>
+    @endif
     <form action="{{ Route('create_area') }}" method="Post" name="user_form" >
         @csrf
         <div class="row">

@@ -4,17 +4,20 @@ use App\Http\Controllers\create_controller;
 use App\Http\Controllers\delete_controller;
 use App\Http\Controllers\edit_controller;
 use App\Http\Controllers\index_controller;
+use App\Http\Controllers\login_controller;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 
 
 
-
+//Login
+Route::post('/validation', [login_controller::class, 'validation'])->name('validation');
 //Index
 Route::get('/home', [index_controller::class, 'home'])->name('home');
 Route::get('/user', [index_controller::class, 'user'])->name('user');
 Route::get('/worked',[index_controller::class, 'worked'])-> name('worked');
 Route::get('/area',[index_controller::class, 'area'])->name('area');
+Route::get('/', [index_controller::class, 'login'])->name('login');
 
 
 //Create

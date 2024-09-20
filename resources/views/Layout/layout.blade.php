@@ -46,6 +46,9 @@
                 <li class="nav-item mt-3">
                     <a class="nav-link active color-nav-item" aria-current="page" href="#"><i class="fa-solid fa-user-check me-4 color-nav-item"></i> Producción</a>
                 </li>
+                <li class="nav-item mt-3">
+                  <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('/') }}"><i class="fa-solid fa-arrow-right-from-bracket me-4 color-nav-item"></i> Cerrar Sesión</a>
+              </li>
               </ul>
             </div>
           </div>

@@ -27,6 +27,9 @@ class index_controller extends Controller
         $areas = areas::paginate(5);
         return view('area/index', compact('areas'));
     }
+    public function product(){
+        return view('product/index');
+    }
 
 
 

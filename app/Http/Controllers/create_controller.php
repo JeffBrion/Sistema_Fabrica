@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\areas;
 use App\Models\worker;
+use App\Models\product;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -18,8 +19,6 @@ class create_controller extends Controller
             'role' => $request->input('role'),
             'password' => $request->input('password'),
         ]);
-
-        // Redirigir a una página de éxito o a otra página
         return redirect()->route('user')->with('success', 'Usuario Creado');
     }
 
@@ -31,7 +30,6 @@ class create_controller extends Controller
             'description' => $request->input('description'),
         ]);
 
-        // Redirigir a una página de éxito o a otra página
         return redirect()->route('area')->with('success', 'Area Creada Exitosamente');
     }
 
@@ -51,6 +49,18 @@ class create_controller extends Controller
             ]);
         }
         return redirect()->route('worked')->with('success', 'Trabajador Agregado');
+
+    }
+    public function create_product(Request $request){
+    
+        product::create([
+            'name'=>$request->input('name'),
+            'description'=>$request->input('description'),
+            'price'=>$request->input('price'),
+            'large'=>$request->input('large'),
+            'diameter'=>$request->input('diameter'),
+        ]);
+        return redirect()->route('product')->with('success', 'Producto Agregado');
 
     }
 }

@@ -41,7 +41,7 @@
                     <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('worked') }}"><i class="fa-solid fa-person-running me-4 color-nav-item"></i> Trabajador</a>
                 </li>
                 <li class="nav-item mt-3">
-                    <a class="nav-link active color-nav-item" aria-current="page" href="#"><i class="fa-solid fa-joint me-4 color-nav-item"></i> Producto</a>
+                    <a class="nav-link active color-nav-item" aria-current="page" href="{{url('product')}}"><i class="fa-solid fa-joint me-4 color-nav-item"></i> Producto</a>
                 </li>
                 <li class="nav-item mt-3">
                     <a class="nav-link active color-nav-item" aria-current="page" href="#"><i class="fa-solid fa-user-check me-4 color-nav-item"></i> Producción</a>

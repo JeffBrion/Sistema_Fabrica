@@ -18,12 +18,14 @@ Route::get('/user', [index_controller::class, 'user'])->name('user');
 Route::get('/worked',[index_controller::class, 'worked'])-> name('worked');
 Route::get('/area',[index_controller::class, 'area'])->name('area');
 Route::get('/', [index_controller::class, 'login'])->name('login');
+Route::get('/product',[index_controller::class, 'product'])->name('product');
 
 
 //Create
 Route::post('register', [create_controller::class, 'register'])->name('register');
 Route::post('create_area', [create_controller::class, 'create_area'])->name('create_area');
 Route::post('create_worker', [create_controller::class, 'create_worker'])->name('create_worker');
+Route::post('create_product',[create_controller::class, 'create_product'])->name('create_product');
 
 //Eliminar
 Route::delete('user/{id}', [delete_controller::class, 'usuario_eliminar'])->name('usuario_eliminar');

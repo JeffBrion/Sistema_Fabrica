@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\areas;
 use App\Models\worker;
+use App\Models\product;
 
 class delete_controller extends Controller
 {
@@ -35,6 +36,14 @@ class delete_controller extends Controller
             return redirect()->route('worked')->with('success', 'Trabajador eliminado exitosamente!');
         }
          return redirect()->route('worked')->with('error', 'Trabajador no encontrado.');
+    }
+    public function producto_eliminar($id){
+        $product = product::find($id);
+        if($product){
+            $product->delete();
+            return redirect()->route('product')->with('success', 'Producto Eliminado Exitosamente');
+        }
+        return redirect()->route('product')->with('error', 'No se pudo eliminar');
     }
 }
 

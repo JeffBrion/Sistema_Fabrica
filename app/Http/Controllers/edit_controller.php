@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\areas;
 use App\Models\worker;
+use App\Models\product;
 use Illuminate\Http\Request;
 
 class edit_controller extends Controller
@@ -47,5 +48,18 @@ class edit_controller extends Controller
         $worker->save();
 
         return redirect()->route('worked')->with('success', 'Trabajador Actualizado Exitosamente');
+    }
+    public function producto_editar( Request $request, $id ){
+        $product = product::findOrfail($id);
+
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->large = $request->input('large');
+        $product->diameter = $request->input('diameter');
+        $product->description = $request->input('description');
+
+        $product->save();
+
+        return redirect()->route('product')->with('success', 'Producto Actualizado Exitosamente');
     }
 }

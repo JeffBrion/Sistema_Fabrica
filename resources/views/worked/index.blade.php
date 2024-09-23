@@ -73,7 +73,7 @@
             <th scope="col">Correo</th>
             <th scope="col">Número de Telefono</th>
             <th scope="col">Área</th>
-            <th colspan="2">Opciones</th>
+            <th colspan="3">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -88,6 +88,10 @@
                 <td>{{ $worker->numbre_phone }}</td>
                 <td>{{ $worker->area->name }}</td>
                 <td> 
+                    <form action="{{ route('producto_asignar', $worker->id) }}" method="POST" style="display: inline">
+                        @csrf
+                        <button type="submit" class="btn btn-success" ><i class="fa-solid fa-person"></i></button>
+                    </form>
                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
                     <form action="{{ route('worker_delete', $worker->id) }}" method="POST" style="display: inline">
                         @csrf

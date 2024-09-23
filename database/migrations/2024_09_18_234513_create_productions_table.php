@@ -16,6 +16,9 @@ return new class extends Migration
             $table->integer('worked_day');
             $table->foreignId('id_workers')->constrained('workers')->onDelete('cascade');
             $table->foreignId('id_products')->constrained('products')->onDelete('cascade');
+            $table->date('start_date');
+            $table->date('end-date');
+            $table->string('status');
             $table->id();
             $table->timestamps();
         });

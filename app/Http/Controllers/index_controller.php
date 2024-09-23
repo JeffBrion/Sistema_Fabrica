@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\areas;
+use App\Models\product;
 use App\Models\worker;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,13 @@ class index_controller extends Controller
         return view('area/index', compact('areas'));
     }
     public function product(){
-        return view('product/index');
+        $products = product::paginate(5);
+        return view('product/index', compact('products'));
+    }
+    public function production(){
+        $trabajador = worker::all();
+        $area = areas::all();
+        return view('production.index',compact('trabajador', 'area'));
     }
 
 

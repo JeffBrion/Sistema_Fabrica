@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\areas;
 use App\Models\product;
 use App\Models\worker;
+use App\Models\productions;
 use Illuminate\Http\Request;
 
 class index_controller extends Controller
@@ -34,8 +35,9 @@ class index_controller extends Controller
     }
     public function production(){
         $trabajador = worker::all();
-        $area = areas::all();
-        return view('production.index',compact('trabajador', 'area'));
+        $products = product::all();
+        $productions = productions::all();
+        return view('production.index',compact('trabajador', 'products', 'productions'));
     }
 
 

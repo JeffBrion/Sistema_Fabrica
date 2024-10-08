@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('productions', function (Blueprint $table) {
-            $table->decimal('payment',8,2);
-            $table->integer('worked_day');
+            $table->decimal('payment',8,2)->nullable();
             $table->foreignId('id_workers')->constrained('workers')->onDelete('cascade');
             $table->foreignId('id_products')->constrained('products')->onDelete('cascade');
             $table->date('start_date');
-            $table->date('end-date');
+            $table->date('end_date');
             $table->string('status');
             $table->id();
             $table->timestamps();

@@ -88,7 +88,7 @@
                 <td>{{ $worker->numbre_phone }}</td>
                 <td>{{ $worker->area->name }}</td>
                 <td> 
-                    <form action="{{ route('producto_asignar', $worker->id) }}" method="POST" style="display: inline">
+                    <form action="" method="POST" style="display: inline">
                         @csrf
                         <button type="submit" class="btn btn-success" ><i class="fa-solid fa-person"></i></button>
                     </form>

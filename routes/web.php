@@ -13,15 +13,22 @@ use Illuminate\Support\Facades\Route;
 
 //Login
 Route::post('/validation', [login_controller::class, 'validation'])->name('validation');
+Route::post('/logout', [login_controller::class, 'logout'])->name('logout');
+
+
 
 //Index
-Route::get('/home', [index_controller::class, 'home'])->name('home');
-Route::get('/user', [index_controller::class, 'user'])->name('user');
-Route::get('/worked',[index_controller::class, 'worked'])-> name('worked');
-Route::get('/area',[index_controller::class, 'area'])->name('area');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [index_controller::class, 'home'])->name('home');
+    Route::get('/user', [index_controller::class, 'user'])->name('user');
+    Route::get('/worked', [index_controller::class, 'worked'])->name('worked');
+    Route::get('/area', [index_controller::class, 'area'])->name('area');
+    Route::get('/product', [index_controller::class, 'product'])->name('product');
+    Route::get('/production', [index_controller::class, 'production'])->name('production');
+});
+
+// Ruta de login (sin protección)
 Route::get('/', [index_controller::class, 'login'])->name('login');
-Route::get('/product',[index_controller::class, 'product'])->name('product');
-Route::get('/production',[index_controller::class, 'production'] )->name('production');
 
 
 //Create
@@ -29,6 +36,7 @@ Route::post('register', [create_controller::class, 'register'])->name('register'
 Route::post('create_area', [create_controller::class, 'create_area'])->name('create_area');
 Route::post('create_worker', [create_controller::class, 'create_worker'])->name('create_worker');
 Route::post('create_product',[create_controller::class, 'create_product'])->name('create_product');
+Route::post('create_production', [create_controller::class, 'create_production'])->name('create_production');
 
 //Eliminar
 Route::delete('user/{id}', [delete_controller::class, 'usuario_eliminar'])->name('usuario_eliminar');
@@ -42,5 +50,3 @@ Route::put('area/{id}', [edit_controller::class, 'editar_area'])->name('editar_a
 Route::put('worker/{id}',[edit_controller::class, 'edit_worker'])-> name('edit_worker');
 Route::put('producto_editar/{id}', [edit_controller::class, 'producto_editar'])->name('producto_editar');
 
-//Crear_produccíon
-Route::post('production/{id}',[asignate_controller::class, 'producto_asignar'])->name('producto_asignar');

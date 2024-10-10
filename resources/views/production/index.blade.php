@@ -64,7 +64,7 @@
                         <label for="exampleFormControlInput1" class="form-label">Seleccione el Estado</label>
                         <select  class="form-control" id="exampleFormControlInput1" name="status"  required>
                             <option disabled selected>Estados</option>                           
-                            <option value="Incial">Anulado</option>    
+                            <option value="Anulado">Anulado</option>    
                             <option value="En Proceso">En Proceso</option>     
                             <option value="Finalizado">Finalizado</option>                              
                         </select>

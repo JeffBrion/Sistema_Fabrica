@@ -50,6 +50,9 @@
                     <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('production') }}"><i class="fa-solid fa-user-check me-4 color-nav-item"></i> Producción</a>
                 </li>
                 <li class="nav-item mt-3">
+                  <a class="nav-link active color-nav-item" aria-current="page" href="{{ url('planilla') }}"><i class="fa-solid fa-book me-4 color-nav-item"></i> Planillas</a>
+              </li>
+                <li class="nav-item mt-3">
                   <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit"  class="nav-link active color-nav-item" aria-current="page"><i class="fa-solid fa-arrow-right-from-bracket me-4 color-nav-item"  ></i> Cerrar  Sesión</button>

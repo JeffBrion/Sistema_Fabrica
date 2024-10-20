@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/area', [index_controller::class, 'area'])->name('area');
     Route::get('/product', [index_controller::class, 'product'])->name('product');
     Route::get('/production', [index_controller::class, 'production'])->name('production');
+    Route::get('/planilla', [index_controller::class, 'planilla'])->name('planilla');
 });
 
 // Ruta de login (sin protección)

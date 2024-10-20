@@ -39,7 +39,10 @@ class index_controller extends Controller
         $productions = productions::all();
         return view('production.index',compact('trabajador', 'products', 'productions'));
     }
-
+    public function planilla()
+    {
+        return view('planilla/index'); 
+    } 
 
 
     

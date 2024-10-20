@@ -14,9 +14,8 @@ class productions extends Model
         'payment',
         'id_workers',
         'id_products',
-        'start_date',
-        'end_date', 
-        'status',
+        'date', 
+        'total_product',
     ];
 
     public function worker()

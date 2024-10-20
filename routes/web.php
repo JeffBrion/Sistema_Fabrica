@@ -43,10 +43,12 @@ Route::delete('user/{id}', [delete_controller::class, 'usuario_eliminar'])->name
 Route::delete('area/{id}', [delete_controller::class, 'area_eliminar'])->name('area_eliminar');
 Route::delete('worker/{id}', [delete_controller::class, 'worker_delete'])->name('worker_delete');
 Route::delete('producto_eliminar/{id}',[delete_controller::class, 'producto_eliminar'])->name('producto_eliminar');
+Route::delete('produccion_eliminar/{id}',[delete_controller::class, 'produccion_eliminar'])->name('produccion_eliminar');
 
 //Editar
 Route::put('user/{id}', [edit_controller::class, 'editar_usuario'])->name('editar_usuario');
 Route::put('area/{id}', [edit_controller::class, 'editar_area'])->name('editar_area');
 Route::put('worker/{id}',[edit_controller::class, 'edit_worker'])-> name('edit_worker');
 Route::put('producto_editar/{id}', [edit_controller::class, 'producto_editar'])->name('producto_editar');
+Route::put('production_editar/{id}', [edit_controller::class, 'production_editar'])->name('production_editar');
 

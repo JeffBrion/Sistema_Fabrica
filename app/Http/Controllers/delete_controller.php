@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\areas;
 use App\Models\worker;
 use App\Models\product;
+use App\Models\productions;
 
 class delete_controller extends Controller
 {
@@ -44,6 +45,14 @@ class delete_controller extends Controller
             return redirect()->route('product')->with('success', 'Producto Eliminado Exitosamente');
         }
         return redirect()->route('product')->with('error', 'No se pudo eliminar');
+    }
+    public function produccion_eliminar($id){
+        $production = productions::find($id);
+        if($production){
+            $production->delete();
+            return redirect()->route('production')->with('success', 'Producción Eliminada Exitosamente');
+        }
+        return redirect()->route('production')->with('error', 'No se pudo eliminar');
     }
 }
 

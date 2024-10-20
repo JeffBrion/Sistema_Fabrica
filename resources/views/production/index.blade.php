@@ -37,12 +37,12 @@
                     @endif
                     <div class="mb-3">
                         <label for="product-price" class="form-label">Precio del Producto</label>
-                        <input type="text" class="form-control" id="product-price" readonly>
+                        <input type="text" class="form-control" id="product-price" name="price" readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Fecha de Inicio</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" name="start_date"  required>
-                    </div>     
+                        <label for="product-price" class="form-label">Producto Realizado</label>
+                        <input type="number" class="form-control" name="total_product" >
+                    </div>   
                 </div>
                 <div class="col-md-6 mt-3">
                     <div class="mb-3">
@@ -55,19 +55,10 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div> 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Fecha de Finalización</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" name="end_date"  required>
-                    </div> 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Seleccione el Estado</label>
-                        <select  class="form-control" id="exampleFormControlInput1" name="status"  required>
-                            <option disabled selected>Estados</option>                           
-                            <option value="Anulado">Anulado</option>    
-                            <option value="En Proceso">En Proceso</option>     
-                            <option value="Finalizado">Finalizado</option>                              
-                        </select>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Fecha de Producción</label>
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="date"  required>
+                        </div> 
                     </div> 
                 </div>
                 <div class="col-md-12 mt-3">
@@ -85,74 +76,29 @@
             <th scope="col">Trabajador</th>
             <th scope="col">Producto</th>
             <th scope="col">Precio del Producto</th>
-            <th scope="col">Fecha de Inicio</th>
-            <th scope="col">Fecha de Finalización</th>
-            <th scope="col">Estado</th>
+            <th scope="col">Cantidad Elaborada</th>
             <th scope="col">Salario</th>
-            <th colspan="2">Opciones</th>
+            <th scope="col">Fecha</th>
+            <th colspan="1">Opciones</th>
           </tr>
         </thead>
         <tbody>
             @foreach ($productions as $production )
-            <tr @if ($production->status == 'En Proceso') class="table-warning"   @endif @if ($production->status == 'Finalizado') class="table-success"   @endif @if ($production->status == 'Anulado') class="table-danger"   @endif>
+            <tr class="table-primary">
                 <th>{{ $production->worker->name}} {{ $production->worker->last_name}}</th>
                 <td>{{ $production->product->name }}</td>
                 <td>{{ $production->product->price }} </td>
-                <td>{{ $production->start_date }} </td>
-                <td>{{ $production->end_date }} </td>
-                <td>{{ $production->status }} </td>
+                <td>{{ $production->total_product }} </td>
                 <td>{{ $production->payment }}</td>
+                <td>{{ $production->date }} </td>
                 <td> 
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
-                    <form action="" method="POST" style="display: inline">
+                    <form action="{{ route('produccion_eliminar', $production->id) }}" method="POST" style="display: inline">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
                     </form>
-                </td>
-                
+                </td>    
             </tr>
-            
-            {{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Usuario</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('producto_editar', $product->id)}}" method="POST">
-                            @method('PUT')
-                            @csrf
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label" >Nombre del Producto</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1"  name="name" value="{{ $product->name }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Precio del producto</label>
-                                <input type="number" step="any"step=".01" class="form-control" id="exampleFormControlInput1" name="price"  value="{{ $product->price }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Largo del Producto</label>
-                                <input type="number" step="any"step=".01" class="form-control" id="exampleFormControlInput1" name="large"   value="{{ $product->large }}" required>
-                            </div>     
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Diametro del Producto</label>
-                                <input type="number" step="any"step=".01"class="form-control" id="exampleFormControlInput1"  value="{{ $product->diameter}}" name="diameter"  required>
-                            </div> 
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Descripción del Producto</label>
-                                <input type="text"  class="form-control" id="exampleFormControlInput1" value="{{ $product->description }}"  name="description"  required>
-                            </div>    
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="Submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                    </form>
-                  </div>
-                </div>
-            </div> --}}
             @endforeach
        
         </tbody>

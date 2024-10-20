@@ -30,13 +30,18 @@ class create_controller extends Controller
 
     public function create_area(Request $request)
     {
-
-        areas::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-        ]);
-
-        return redirect()->route('area')->with('success', 'Area Creada Exitosamente');
+        $existe = areas::where('name', $request->input('name'))->exists();
+        if (!$existe) {
+            areas::create([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+            ]);
+    
+            return redirect()->route('area')->with('success', 'Area Creada Exitosamente');
+        }else{
+            return redirect()->route('area')->with('error', 'Area ya Existente'); 
+        }
+      
     }
 
     public function create_worker(Request $request){
@@ -58,29 +63,42 @@ class create_controller extends Controller
 
     }
     public function create_product(Request $request){
-    
-        product::create([
-            'name'=>$request->input('name'),
-            'description'=>$request->input('description'),
-            'price'=>$request->input('price'),
-            'large'=>$request->input('large'),
-            'diameter'=>$request->input('diameter'),
-        ]);
-        return redirect()->route('product')->with('success', 'Producto Agregado');
+        $existe = product::where('name', $request->input('name'))->exists();
+        if (!$existe) 
+        {
+            if ($request->input('price')<=0 or $request->input('large')<= 0 or $request->input('diameter') <=0) {
+                return redirect()->route('product')->with('error', 'Valor Invalido');
+            }else{
+                product::create([
+                    'name'=>$request->input('name'),
+                    'description'=>$request->input('description'),
+                    'price'=>$request->input('price'),
+                    'large'=>$request->input('large'),
+                    'diameter'=>$request->input('diameter'),
+                ]);
+                return redirect()->route('product')->with('success', 'Producto Agregado');
+            }
+
+        }else{
+            return redirect()->route('product')->with('error', 'Producto ya Existe'); 
+        }
+
 
     }
 
     public function create_production(Request $request){
-
-        productions::create([
-            'start_date'=>$request->input('start_date'),
-            'end_date'=>$request->input('end_date'),
-            'status'=>$request->input('status'),
-            'id_workers'=>$request->input('id_workers'),
-            'id_products'=>$request->input('id_products'),
-         
-        ]);
-        return redirect()->route('production')->with('success', 'Producción Agregada');
+        if ($request->input('total_product') <= 0) {
+            return redirect()->route('production')->with('error', 'Valor Invalido');
+        }
+            productions::create([
+                'date'=>$request->input('date'),
+                'id_workers'=>$request->input('id_workers'),
+                'id_products'=>$request->input('id_products'),
+                'total_product'=>$request->input('total_product'),
+                'payment'=>$request->input('total_product') * $request->input('price'),
+            
+            ]);
+            return redirect()->route('production')->with('success', 'Producción Agregada');
 
     }
 }

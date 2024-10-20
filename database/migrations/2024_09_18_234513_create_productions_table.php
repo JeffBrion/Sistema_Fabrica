@@ -15,9 +15,8 @@ return new class extends Migration
             $table->decimal('payment',8,2)->nullable();
             $table->foreignId('id_workers')->constrained('workers')->onDelete('cascade');
             $table->foreignId('id_products')->constrained('products')->onDelete('cascade');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('status');
+            $table->date('date');
+            $table->integer('total_product');
             $table->id();
             $table->timestamps();
         });

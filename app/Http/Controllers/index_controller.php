@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\areas;
+use App\Models\planilla;
 use App\Models\product;
 use App\Models\worker;
 use App\Models\productions;
@@ -41,7 +42,9 @@ class index_controller extends Controller
     }
     public function planilla()
     {
-        return view('planilla/index'); 
+        $trabajador = worker::all();
+        $planillas = planilla::all();
+        return view('planilla/index', compact('trabajador', 'planillas')); 
     } 
 
 

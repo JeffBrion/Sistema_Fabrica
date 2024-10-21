@@ -11,5 +11,12 @@ class planilla extends Model
     protected $fillable = [
         'start_date',
         'end_date',
+        'description',
+        'workers_id',
     ];
+
+    public function worker()
+{
+    return $this->belongsTo(Worker::class, 'workers_id');
+}
 }

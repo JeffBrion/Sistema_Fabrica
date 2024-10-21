@@ -16,8 +16,9 @@ return new class extends Migration
             $table->timestamps();
             $table->date('start_date');
             $table->date('end_date');
-            $table->unsignedBigInteger('production_id');
-            $table->foreign('production_id')->references('id')->on('production')->onDelete('cascade');
+            $table->unsignedBigInteger('workers_id');
+            $table->foreign('workers_id')->references('id')->on('workers')->onDelete('cascade');
+            $table->string('description');
 
         });
     }

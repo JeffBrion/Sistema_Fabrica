@@ -38,6 +38,8 @@ Route::post('create_area', [create_controller::class, 'create_area'])->name('cre
 Route::post('create_worker', [create_controller::class, 'create_worker'])->name('create_worker');
 Route::post('create_product',[create_controller::class, 'create_product'])->name('create_product');
 Route::post('create_production', [create_controller::class, 'create_production'])->name('create_production');
+Route::post('create_planilla', [create_controller::class, 'create_planilla'])->name('create_planilla');
+
 
 //Eliminar
 Route::delete('user/{id}', [delete_controller::class, 'usuario_eliminar'])->name('usuario_eliminar');

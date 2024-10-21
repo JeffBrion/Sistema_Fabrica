@@ -7,6 +7,7 @@ use App\Models\areas;
 use App\Models\worker;
 use App\Models\product;
 use App\Models\productions;
+use App\Models\planilla;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -99,6 +100,21 @@ class create_controller extends Controller
             
             ]);
             return redirect()->route('production')->with('success', 'Producción Agregada');
+
+    }
+
+    
+    public function create_planilla(Request $request){
+        if ($request->input('end_date') < $request->input('start_date')) {
+            return redirect()->route('planilla')->with('error', 'Fechas Invalidas');
+        }
+            planilla::create([
+                'start_date'=>$request->input('start_date'),
+                'end_date'=>$request->input('end_date'),
+                'description'=>$request->input('description'),
+                'workers_id'=>$request->input('workers_id'),  
+            ]);
+            return redirect()->route('planilla')->with('success', 'Planilla Generada');
 
     }
 }

@@ -47,6 +47,28 @@ class index_controller extends Controller
         return view('planilla/index', compact('trabajador', 'planillas')); 
     } 
 
+    public function planilladetalle(Request $request, $id){
+        $planilla = Planilla::findOrFail($id);
+
+        $workerId = $planilla->workers_id;
+        $worker = $planilla->worker;
+
+        $productions = productions::where('id_workers', $workerId)
+            ->whereBetween('date', [$planilla->start_date, $planilla->end_date])
+            ->get();
+        $payment = 0;
+
+        foreach ($productions as  $production) {
+            $payment += $production->payment;
+        }
+
+        return view('planilla.show', [
+            'productions' => $productions,
+            'worker_name' => $worker->name,
+            'worker_lastname' => $worker->last_name,
+            'payment' => $payment]);
+    }
+
 
     
 }

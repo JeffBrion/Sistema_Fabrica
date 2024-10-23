@@ -9,7 +9,7 @@ use App\Http\Controllers\asignate_controller;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Route;
 
-
+use function Pest\Laravel\delete;
 
 //Login
 Route::post('/validation', [login_controller::class, 'validation'])->name('validation');
@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/product', [index_controller::class, 'product'])->name('product');
     Route::get('/production', [index_controller::class, 'production'])->name('production');
     Route::get('/planilla', [index_controller::class, 'planilla'])->name('planilla');
+    Route::put('/planilladetalle/{id}', [index_controller::class, 'planilladetalle'])->name('planilladetalle');
 });
 
 // Ruta de login (sin protección)
@@ -47,6 +48,7 @@ Route::delete('area/{id}', [delete_controller::class, 'area_eliminar'])->name('a
 Route::delete('worker/{id}', [delete_controller::class, 'worker_delete'])->name('worker_delete');
 Route::delete('producto_eliminar/{id}',[delete_controller::class, 'producto_eliminar'])->name('producto_eliminar');
 Route::delete('produccion_eliminar/{id}',[delete_controller::class, 'produccion_eliminar'])->name('produccion_eliminar');
+Route::delete('eliminarplanilla/{id}', [delete_controller::class, 'eliminarplanilla'])->name('eliminarplanilla');
 
 //Editar
 Route::put('user/{id}', [edit_controller::class, 'editar_usuario'])->name('editar_usuario');

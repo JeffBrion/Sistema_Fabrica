@@ -7,6 +7,7 @@ use App\Models\areas;
 use App\Models\worker;
 use App\Models\product;
 use App\Models\productions;
+use App\Models\planilla;
 
 class delete_controller extends Controller
 {
@@ -53,6 +54,14 @@ class delete_controller extends Controller
             return redirect()->route('production')->with('success', 'Producción Eliminada Exitosamente');
         }
         return redirect()->route('production')->with('error', 'No se pudo eliminar');
+    }
+    public function eliminarplanilla($id){
+        $planilla = planilla::find($id);
+        if($planilla){
+            $planilla->delete();
+            return redirect()->route('planilla')->with('success', 'Planilla Eliminada Exitosamente');
+        }
+        return redirect()->route('planilla')->with('error', 'No se pudo eliminar');
     }
 }
 

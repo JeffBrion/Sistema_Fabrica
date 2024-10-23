@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\areas;
+use App\Models\productions;
 
 class worker extends Model
 {
@@ -21,5 +22,9 @@ class worker extends Model
     public function area()
     {
         return $this->belongsTo(areas::class, 'areas_id');
+    }
+    public function productions()
+    {
+        return $this->hasMany(productions::class, 'id_workers');
     }
 }

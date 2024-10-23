@@ -72,15 +72,19 @@
                 <td>{{ $planilla->end_date }} </td>
                 <td>{{ $planilla->description }} </td>
                 <td> 
-                    <form action="" method="POST" style="display: inline">
+                    <form action="{{ route('eliminarplanilla',$planilla->id) }}" method="POST" style="display: inline">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
                     </form>
+                    <form action="{{ route('planilladetalle',$planilla->id) }}" method="POST" style="display: inline">
+                        @csrf
+                        @method('PUT')
+                        <button class="btn btn-warning" type="submit"><i class="fa-solid fa-pencil"></i></button>
+                    </form>
                 </td>    
             </tr>
             @endforeach
-       
         </tbody>
       </table>
       <nav aria-label="Page navigation example">

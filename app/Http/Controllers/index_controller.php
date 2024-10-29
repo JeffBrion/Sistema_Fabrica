@@ -47,28 +47,41 @@ class index_controller extends Controller
         return view('planilla/index', compact('trabajador', 'planillas')); 
     } 
 
-    public function planilladetalle(Request $request, $id){
+    public function planilladetalle(Request $request, $id) {
+        $pagination = $request->query('pagination', 5); // Usar 5 como valor predeterminado si no se proporciona
+        
         $planilla = Planilla::findOrFail($id);
-
+    
         $workerId = $planilla->workers_id;
         $worker = $planilla->worker;
-
+    
         $productions = productions::where('id_workers', $workerId)
             ->whereBetween('date', [$planilla->start_date, $planilla->end_date])
-            ->get();
+            ->paginate($pagination);
+    
         $payment = 0;
-
-        foreach ($productions as  $production) {
+        $IR = 0;
+        $INSS = 0;
+    
+        foreach ($productions as $production) {
             $payment += $production->payment;
         }
-
+    
+        $IR = $payment * 0.07;
+        $INSS = $payment * 0.15;
+    
+        $pago_net = $payment - ($IR + $INSS);
+    
+        // Enviar datos a la vista
         return view('planilla.show', [
+            'planilla' => $planilla,
             'productions' => $productions,
-            'worker_name' => $worker->name,
-            'worker_lastname' => $worker->last_name,
-            'payment' => $payment]);
+            'worker' => $worker,
+            'payment' => $payment,
+            'pago_net' => $pago_net,
+            'INSS' => $INSS,
+            'IR' => $IR,
+        ]);
     }
-
-
     
 }
